@@ -82,12 +82,13 @@
 
         function startLocationTracking() {
     if ("geolocation" in navigator) {
-        watchID = setInterval(function() {
-            navigator.geolocation.getCurrentPosition(displayLocation, function (error) {
-                console.error("位置情報の取得に失敗しました: " + error.message);
-            }, { enableHighAccuracy: true });
-        }, 5000);
-
+            while(1){
+                watchID = setTimeout(function() {
+                    navigator.geolocation.getCurrentPosition(displayLocation, function (error) {
+                        console.error("位置情報の取得に失敗しました: " + error.message);
+                    }, { enableHighAccuracy: true });
+                }, 5000);
+            }
         startButton.disabled = true;
         stopButton.disabled = false;
     } else {
